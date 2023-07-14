@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sprites/JapaneseTheme.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/EgyptianTheme.png" type="Texture" id=2]
+[ext_resource path="res://Code/Sword_Button.gd" type="Script" id=3]
+[ext_resource path="res://Code/Back_Button.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/BackButton.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/BackButtonPressed.png" type="Texture" id=6]
+[ext_resource path="res://Materials/Outline.tres" type="Material" id=7]
+[ext_resource path="res://Scenes/Japan.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Settings_Menu" type="Node2D"]
+
+[node name="Japanese" type="TouchScreenButton" parent="."]
+material = ExtResource( 7 )
+position = Vector2( 48, 13 )
+normal = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Type" type="Node2D" parent="Japanese"]
+
+[node name="Egyptian" type="TouchScreenButton" parent="."]
+material = ExtResource( 7 )
+position = Vector2( 95, 13 )
+normal = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Type" type="Node2D" parent="Egyptian"]
+position = Vector2( 1, 0 )
+
+[node name="Back_Button" type="TouchScreenButton" parent="."]
+position = Vector2( 10, 42 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 6 )
+shape = SubResource( 1 )
+shape_visible = false
+script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 80, 45 )
+current = true
+
+[node name="Japan" parent="." instance=ExtResource( 8 )]
+
+[connection signal="pressed" from="Japanese" to="Japanese" method="_on_Japanese_pressed"]
+[connection signal="pressed" from="Egyptian" to="Egyptian" method="_on_Egyptian_pressed"]
+[connection signal="released" from="Back_Button" to="Back_Button" method="_on_Back_Button_released"]
