@@ -1,2 +1,2 @@
-# SwordGame
-Sword game without a name one day thing
+# Blade Bounce
+24 hour project!
